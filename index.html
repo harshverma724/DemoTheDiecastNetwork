@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Diecast Network</title>
+    <link rel="icon" type="assets/icon.ico" href="assets/icon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo-wrapper">
+            <img src="assets/Community_Logo.png" alt="Website Logo" class="site-logo">
+        </div>
+        <h1>The Diecast Network</h1>
+        
+        <input type="text" id="carSearch" placeholder="Search for a model..." onkeyup="filterCars()">
+
+        <div class="header-community">
+            <div class="header-qr">
+                <a href="https://chat.whatsapp.com/JdMbZ9Q5njdDvtfMLm1ceY" target="_blank">
+                    <img src="assets/Whatsapp QR.jpg" alt="WA">
+                </a>
+                <span>WhatsApp</span>
+            </div>
+            <div class="header-qr">
+                <a href="https://www.instagram.com/the.diecast.network?igsh=ZW52Y3E0OTMzNHJ3" target="_blank">
+                    <img src="assets/Instagram QR.jpg" alt="IG">
+                </a>
+                <span>Instagram</span>
+            </div>
+        </div>
+
+        <div class="header-community">
+            <button id="cart-btn" onclick="toggleCart()">
+                🛒 Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+
+        <div id="cart-drawer" class="cart-drawer">
+            <div class="cart-header">
+                <h2>Your Garage Cart</h2>
+                <button onclick="toggleCart()">Close ×</button>
+            </div>
+            <div id="cart-items"></div>
+            <div class="cart-footer">
+                <h3>Total: <span id="cart-total">₹0</span></h3>
+                <button class="checkout-btn" onclick="checkoutWhatsApp()">Inquire via WhatsApp</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" id="carGrid">
+        <div class="car-card available">
+            <a href="product.html?id=tokyo-drift" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Fast And Furious TOKYO DRIFT</h3>
+                    <span class="status-tag">Available</span>
+                </div>
+                <img src="assets/car-photos/Tokyo Drift.jpeg" alt="Tokyo Drift" class="car-image">
+                <h4>Hot Wheels SILVER SERIES | Fast And Furious TOKYO DRIFT | 1970 Monte Carlo | 3/5 | HNR88</h4>
+                <p class="description">Classic V8 street brawler from the opening scene of Tokyo Drift.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 1699</p>
+                <button class="add-btn" id="btn-tokyo-drift" onclick="handleCartClick('btn-tokyo-drift', 'Fast And Furious TOKYO DRIFT', 1699, 'available')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="car-card available">
+            <a href="product.html?id=nissan-350z" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels NISSAN 350Z CUSTOM</h3>
+                    <span class="status-tag">Available</span>
+                </div>
+                <img src="assets/car-photos/NISSAN 350Z CUSTOM PERSONNALISE.jpeg" alt="NISSAN 350Z CUSTOM" class="car-image">
+                <h4>Hot Wheels SILVER SERIES | Fast & Furious TOKYO DRIFT | Nissan 350Z Custom | 1/5 | HNR88</h4>
+                <p class="description">Driven by the 'Drift King' in Tokyo Drift, featuring the iconic VeilSide Version 3 widebody kit.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 429</p>
+                <button class="add-btn" id="btn-nissan-350z" onclick="handleCartClick('btn-nissan-350z', 'Hot Wheels NISSAN 350Z CUSTOM', 429, 'available')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="car-card available">
+            <a href="product.html?id=mazda-rx7" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels Mazda RX-7</h3>
+                    <span class="status-tag">Available</span>
+                </div>
+                <img src="assets/car-photos/Mazda RX7.jpeg" alt="Mazda RX7" class="car-image">
+                <h4>Hot Wheels HW J-IMPORTS | 2026 MAINLINE | Mazda RX-7 | 2/10 | 61/250</h4>
+                <p class="description">Metalflake Purple Mazda RX-7 sporting a vibrant 'Spring' livery with unique rabbit graphics.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 279</p>
+                <button class="add-btn" id="btn-mazda-rx7" onclick="handleCartClick('btn-mazda-rx7', 'Hot Wheels Mazda RX-7', 279, 'available')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="car-card sold">
+            <a href="product.html?id=ford-rs200-sth" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels Ford RS200 STH</h3>
+                    <span class="status-tag">Sold</span>
+                </div>
+                <img src="assets/car-photos/FordRS200 Super.jpg" alt="FordRS200 Super" class="car-image">
+                <h4>Hot Wheels SUPER TREASURE HUNT | HW PEAK PURSUIT | Ford RS200</h4>
+                <p class="description">Iconic Gulf Racing livery with Spectraflame paint.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 2999</p>
+                <button class="add-btn disabled" id="btn-ford-sth" onclick="handleCartClick('btn-ford-sth', 'Hot Wheels Ford RS200 Super Treasure Hunt', 2999, 'sold')">Sold</button>
+            </div>
+        </div>
+
+        <div class="car-card available">
+            <a href="product.html?id=ford-rs200-main" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels Ford RS200</h3>
+                    <span class="status-tag">Available</span>
+                </div>
+                <img src="assets/car-photos/Ford RS200.jpeg" alt="FordRS200" class="car-image">
+                <h4>Hot Wheels HW PEAK PURSUIT | 2025 MAINLINE | Ford RS200 | 9/10 | 247/250</h4>
+                <p class="description">The Hot Wheels Ford RS200 in "Gulf Blue", reproducing the Group B rally legend.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 279</p>
+                <button class="add-btn" id="btn-ford-main" onclick="handleCartClick('btn-ford-main', 'Hot Wheels Ford RS200', 279, 'available')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="car-card sold">
+            <a href="product.html?id=ferrari-sf90" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels Ferrari SF90 Stradale</h3>
+                    <span class="status-tag">Sold</span>
+                </div>
+                <img src="assets/car-photos/Ferrari sf90 grey.jpg" alt="Ferrari sf90 grey" class="car-image">
+                <h4>Hot Wheels HW EXOTICS | Ferrari SF90 Stradale | 1/5</h4>
+                <p class="description">Faithfully replicates Ferrari's first series-production Plug-in Hybrid Electric Vehicle (PHEV).</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 399</p>
+                <button class="add-btn disabled" id="btn-ferrari-sf90" onclick="handleCartClick('btn-ferrari-sf90', 'Ferrari SF90 Stradale', 399, 'sold')">Sold</button>
+            </div>
+        </div>
+
+        <div class="car-card sold">
+            <a href="product.html?id=bugatti-bolide" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels Bugatti Bolide</h3>
+                    <span class="status-tag">Sold</span>
+                </div>
+                <img src="assets/car-photos/Bugatti Bolide.jpg" alt="Bugatti Bolide" class="car-image">
+                <h4>Hot Wheels HW EXOTICS | Bugatti Bolide | 3/10</h4>
+                <p class="description">Capturing the ultimate W16 track-only hypercar with radical aerodynamics.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 649</p>
+                <button class="add-btn disabled" id="btn-bugatti-bolide" onclick="handleCartClick('btn-bugatti-bolide', 'Hot Wheels Bugatti Bolide', 649, 'sold')">Sold</button>
+            </div>
+        </div>
+
+        <div class="car-card sold">
+            <a href="product.html?id=mclaren-f1" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels McLaren F1</h3>
+                    <span class="status-tag">Sold</span>
+                </div>
+                <img src="assets/car-photos/Mclaren F1.jpg" alt="Mclaren F1" class="car-image">
+                <h4>Hot Wheels HW: THE '90s | McLaren F1 | 9/10</h4>
+                <p class="description">Finished in Grand Prix Red, honoring the ultimate 1990s hypercar.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 449</p>
+                <button class="add-btn disabled" id="btn-mclaren-f1" onclick="handleCartClick('btn-mclaren-f1', 'Hot Wheels McLaren F1', 449, 'sold')">Sold</button>
+            </div>
+        </div>
+
+        <div class="car-card available">
+            <a href="product.html?id=ferrari-daytona" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Bburago FERRARI DAYTONA SP3</h3>
+                    <span class="status-tag">Available</span>
+                </div>
+                <img src="assets/car-photos/Bburago FERRARI DAYTONA SP3.jpg" alt="Bburago FERRARI DAYTONA" class="car-image">
+                <h4>Bburago FERRARI | RACE & PLAY | Ferrari Daytona SP3 | Icona Series</h4>
+                <p class="description">Captures the breathtaking design of Ferrari's ultra-exclusive "Icona" series.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 599</p>
+                <button class="add-btn" id="btn-ferrari-daytona" onclick="handleCartClick('btn-ferrari-daytona', 'Bburago FERRARI DAYTONA SP3', 599, 'available')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="car-card available">
+            <a href="product.html?id=koenigsegg-ccxr" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels Koenigsegg CCXR</h3>
+                    <span class="status-tag">Available</span>
+                </div>
+                <img src="assets/car-photos/Koenigsegg CCXR.jpg" alt="Koenigsegg CCXR" class="car-image">
+                <h4>Hot Wheels PREMIUM | Fast & Furious | Koenigsegg CCXR | 3/5</h4>
+                <p class="description">The Koenigsegg CCXR brings the multi-million dollar exotic flair from Fast Five.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 799</p>
+                <button class="add-btn" id="btn-koenigsegg-ccxr" onclick="handleCartClick('btn-koenigsegg-ccxr', 'Hot Wheels PREMIUM Koenigsegg CCXR', 799, 'available')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="car-card available">
+            <a href="product.html?id=vw-bumblebee" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <h3>Hot Wheels VW Beetle (Bumblebee)</h3>
+                    <span class="status-tag">Available</span>
+                </div>
+                <img src="assets/car-photos/Bumble Bee.jpg" alt="Volkswagen Beetle" class="car-image">
+                <h4>Hot Wheels HW SCREEN TIME | TRANSFORMERS | VW Beetle</h4>
+                <p class="description">The Volkswagen Beetle "Bumblebee" brings the beloved Autobot scout to the 1:64 scale world.</p>
+            </a>
+            <div class="price-container">
+                <p class="price">₹ 289</p>
+                <button class="add-btn" id="btn-vw-bumblebee" onclick="handleCartClick('btn-vw-bumblebee', 'Hot Wheels Volkswagen Beetle (Bumblebee)', 289, 'available')">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="image-lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="zoomed-img">
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <button id="backToTop" onclick="scrollToTop()" style="display:none; position:fixed; bottom:20px; left:20px; z-index:99; background:#2c3e50; color:white; border:none; padding:15px; border-radius:50%; cursor:pointer;">↑</button>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple script for Back to Top button
+        window.onscroll = function() {
+            let btn = document.getElementById("backToTop");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
